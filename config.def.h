@@ -153,6 +153,7 @@ static Keychord keychords[] = {
 	{ 1, {{ MODKEY, XK_m }},                      spawn,            {.v = (const char*[]){ "kitty", "-e", "rmpc", NULL } } },
 	{ 1, {{ MODKEY, XK_w }},                      spawn,            {.v = (const char*[]){ "librewolf", NULL } } },
 	{ 1, {{ MODKEY|ControlMask, XK_w }},          spawn,            {.v = (const char*[]){ "librewolf", "--private-window", NULL } } },
+	{ 1, {{ MODKEY, XK_e }},                      spawn,            {.v = (const char*[]){ "thunderbirdSucks", NULL } } },
 	{ 1, {{ MODKEY, XK_v }},                      spawn,            {.v = (const char*[]){ "mullvad-vpn", NULL } } },
 	{ 1, {{ MODKEY, XK_i }},                      spawn,            {.v = (const char*[]){ "ronema", NULL } } },
 	{ 1, {{ MODKEY, XK_c }},                      spawn,            {.v = (const char*[]){ "rofi-clip", NULL } } },
