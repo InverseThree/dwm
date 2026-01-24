@@ -1,6 +1,11 @@
 # dwm
 my own build of dwm, steal it if u wanna for some unknown reason<br/><br/>
 
+my [dotfiles](https://github.com/InverseThree/dotfiles) and [scripts](https://github.com/InverseThree/scripts)<br/><br/>
+
+preview:<br/>
+![rice](preview.png)<br/><br/>
+
 patches applied (don't know if i've missed any):\
 [alpha](https://dwm.suckless.org/patches/alpha/dwm-alpha-20250918-74edc27.diff)\
 [bulkill](https://dwm.suckless.org/patches/bulkill/dwm-bulkill-20231029-9f88553.diff)\
