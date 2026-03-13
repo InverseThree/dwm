@@ -159,7 +159,7 @@ static Keychord keychords[] = {
 	{ 1, {{ MODKEY|ControlMask, XK_w }},          spawn,            {.v = (const char*[]){ "librewolf", "--private-window", NULL } } },
 	{ 1, {{ MODKEY|Mod1Mask, XK_m }},             spawn,            {.v = (const char*[]){ "thunderbirdSucks", NULL } } },
 	{ 1, {{ MODKEY|Mod1Mask, XK_t }},             spawn,            {.v = (const char*[]){ "Telegram", NULL } } },
-	{ 1, {{ MODKEY|Mod1Mask, XK_s }},             spawn,            {.v = (const char*[]){ "signal-desktop", NULL } } },
+	{ 1, {{ MODKEY|Mod1Mask, XK_s }},             spawn,            {.v = (const char*[]){ "signal-desktop", "--password-store=kwallet6", NULL } } },
 	{ 1, {{ MODKEY|Mod1Mask, XK_v }},             spawn,            {.v = (const char*[]){ "mullvad-vpn", NULL } } },
 	{ 1, {{ MODKEY, XK_equal }},                  spawn,            {.v = (const char*[]){ "qalculate-gtk", NULL } } },
 	{ 1, {{ MODKEY, XK_i }},                      spawn,            {.v = (const char*[]){ "ronema", NULL } } },
