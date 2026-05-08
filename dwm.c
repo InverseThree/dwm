@@ -22,6 +22,8 @@
  */
 #include <errno.h>
 #include <locale.h>
+#define PCRE2_CODE_UNIT_WIDTH 8
+#include <pcre2.h>
 #include <signal.h>
 #include <stdarg.h>
 #include <stdio.h>
@@ -355,6 +357,45 @@ struct Pertag {
 /* compile-time check if all tags fit into an unsigned int bit array. */
 struct NumTags { char limitexceeded[LENGTH(tags) > 31 ? -1 : 1]; };
 
+static int
+regex_match(const char *pattern, const char *text)
+{
+    int errornumber;
+    PCRE2_SIZE erroroffset;
+
+    pcre2_code *re;
+    pcre2_match_data *match_data;
+
+    re = pcre2_compile(
+        (PCRE2_SPTR)pattern,
+        PCRE2_ZERO_TERMINATED,
+        0,
+        &errornumber,
+        &erroroffset,
+        NULL
+    );
+
+    if (!re)
+        return 0;
+
+    match_data = pcre2_match_data_create_from_pattern(re, NULL);
+
+    int rc = pcre2_match(
+        re,
+        (PCRE2_SPTR)text,
+        strlen(text),
+        0,
+        0,
+        match_data,
+        NULL
+    );
+
+    pcre2_match_data_free(match_data);
+    pcre2_code_free(re);
+
+    return rc >= 0;
+}
+
 /* function implementations */
 void
 applyrules(Client *c)
@@ -377,7 +418,7 @@ applyrules(Client *c)
 
 	for (i = 0; i < LENGTH(rules); i++) {
 		r = &rules[i];
-		if ((!r->title || strstr(c->name, r->title))
+		if ((!r->title || regex_match(r->title, c->name))
 		&& (!r->class || strstr(class, r->class))
 		&& (!r->instance || strstr(instance, r->instance)))
 		{

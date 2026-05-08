@@ -1,7 +1,5 @@
 /* See LICENSE file for copyright and license details. */
 
-static const char thunderbird[]       = "org.mozilla.Thunderbird";
-
 /* appearance */
 static unsigned int borderpx          = 3;        /* border pixel of windows */
 static unsigned int snap              = 32;       /* snap pixel */
@@ -37,26 +35,18 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class           instance     title       tags mask    switchtotag    isfloating    isterminal    noswallow    monitor */
-	{ "Gimp",            NULL,      NULL,       1 << 8,          3,             1,            0,            0,          -1 },
-	{ "librewolf",       NULL,      NULL,       1 << 1,          3,             0,            0,           -1,          -1 },
-	{ "steam",           NULL,      "Steam",    1 << 2,          0,             0,            0,            0,          -1 },
-	{ "steam_app_0",     NULL,      NULL,       1 << 3,          0,             0,            0,            0,          -1 },
-	{ "steam_app_1",     NULL,      NULL,       1 << 4,          3,             0,            0,            0,          -1 },
-	{ "steam_app_2",     NULL,      NULL,       1 << 4,          3,             0,            0,            0,          -1 },
-	{ "steam_app_3",     NULL,      NULL,       1 << 4,          3,             0,            0,            0,          -1 },
-	{ "steam_app_4",     NULL,      NULL,       1 << 4,          3,             0,            0,            0,          -1 },
-	{ "steam_app_5",     NULL,      NULL,       1 << 4,          3,             0,            0,            0,          -1 },
-	{ "steam_app_6",     NULL,      NULL,       1 << 4,          3,             0,            0,            0,          -1 },
-	{ "steam_app_7",     NULL,      NULL,       1 << 4,          3,             0,            0,            0,          -1 },
-	{ "steam_app_8",     NULL,      NULL,       1 << 4,          3,             0,            0,            0,          -1 },
-	{ "steam_app_9",     NULL,      NULL,       1 << 4,          3,             0,            0,            0,          -1 },
-	{ thunderbird,       NULL,      NULL,       1 << 5,          3,             0,            0,            0,          -1 },
-	{ "TelegramDesktop", NULL,      NULL,       1 << 5,          4,             0,            0,            0,          -1 },
-	{ "Signal",          NULL,      NULL,       1 << 5,          4,             0,            0,            0,          -1 },
-	{ "Alacritty",       NULL,      NULL,       0,               0,             0,            1,            0,          -1 },
-	{ "kitty",           NULL,      NULL,       0,               0,             0,            1,            0,          -1 },
-	{ NULL,              NULL, "Event Tester",  0,               0,             0,            0,            1,          -1 },
+	/* class           instance     title         tags mask    switchtotag    isfloating    isterminal    noswallow    monitor */
+	{ "Gimp",            NULL,      NULL,         1 << 8,          3,             1,            0,            0,          -1 },
+	{ "librewolf",       NULL,      NULL,         1 << 1,          3,             0,            0,           -1,          -1 },
+	{ "steam",           NULL,      "Steam",      1 << 2,          0,             0,            0,            0,          -1 },
+	{ "steam_app",       NULL,      "Chatty.*",   1 << 3,          0,             0,            0,            0,          -1 },
+	{ "steam_app",       NULL, "^(?!broken).+",   1 << 4,          3,             0,            0,            0,          -1 },
+	{ "org.mozilla.Thu", NULL,      NULL,         1 << 5,          3,             0,            0,            0,          -1 },
+	{ "TelegramDesktop", NULL,      NULL,         1 << 5,          4,             0,            0,            0,          -1 },
+	{ "Signal",          NULL,      NULL,         1 << 5,          4,             0,            0,            0,          -1 },
+	{ "Alacritty",       NULL,      NULL,         0,               0,             0,            1,            0,          -1 },
+	{ "kitty",           NULL,      NULL,         0,               0,             0,            1,            0,          -1 },
+	{ NULL,              NULL, "Event Tester",    0,               0,             0,            0,            1,          -1 },
 };
 
 /* layout(s) */
