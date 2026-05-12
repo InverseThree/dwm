@@ -39,7 +39,7 @@ static const Rule rules[] = {
 	{ "Gimp",            NULL,      NULL,         1 << 8,          3,             1,            0,            0,          -1 },
 	{ "librewolf",       NULL,      NULL,         1 << 1,          3,             0,            0,           -1,          -1 },
 	{ "steam",           NULL,      "Steam",      1 << 2,          0,             0,            0,            0,          -1 },
-	{ "steam_app",       NULL,      "Chatty.*",   1 << 3,          0,             0,            0,            0,          -1 },
+	{ "steam_app",       NULL,      "broken.*",   1 << 3,          0,             0,            0,            0,          -1 },
 	{ "steam_app",       NULL, "^(?!broken).+",   1 << 4,          3,             0,            0,            0,          -1 },
 	{ "org.mozilla.Thu", NULL,      NULL,         1 << 5,          3,             0,            0,            0,          -1 },
 	{ "TelegramDesktop", NULL,      NULL,         1 << 5,          4,             0,            0,            0,          -1 },
