@@ -207,6 +207,7 @@ static void focusin(XEvent *e);
 static void focusmon(const Arg *arg);
 static void focusstack(const Arg *arg);
 static Atom getatomprop(Client *c, Atom prop);
+static Client *getpointerclient(void);
 static int getrootptr(int *x, int *y);
 static long getstate(Window w);
 static pid_t getstatusbarpid();
@@ -758,8 +759,8 @@ configurenotify(XEvent *e)
 						resizeclient(c, m->mx, m->my, m->mw, m->mh);
 				XMoveResizeWindow(dpy, m->barwin, m->wx, m->by, m->ww, bh);
 			}
-			focus(NULL);
 			arrange(NULL);
+			focus(NULL);
 		}
 	}
 }
@@ -1114,6 +1115,8 @@ void
 focus(Client *c)
 {
 	if (!c || !ISVISIBLE(c))
+		c = getpointerclient();
+	if (!c || !ISVISIBLE(c))
 		for (c = selmon->stack; c && !ISVISIBLE(c); c = c->snext);
 	if (selmon->sel && selmon->sel != c)
 		unfocus(selmon->sel, 0);
@@ -1224,6 +1227,16 @@ getstatusbarpid()
 	fgets(buf, sizeof(buf), fp);
 	pclose(fp);
 	return strtol(buf, NULL, 10);
+}
+
+Client *
+getpointerclient(void)
+{
+	Window dummy, win;
+	int di;
+	unsigned int dui;
+	XQueryPointer(dpy, root, &dummy, &win, &di, &di, &di, &di, &dui);
+	return wintoclient(win);
 }
 
 int
@@ -2141,8 +2154,8 @@ sendmon(Client *c, Monitor *m)
 	c->tags = m->tagset[m->seltags]; /* assign tags of target monitor */
 	attach(c);
 	attachstack(c);
-	focus(NULL);
 	arrange(NULL);
+	focus(NULL);
 	if (c->switchtag)
 		c->switchtag = 0;
 }
@@ -2542,8 +2555,8 @@ tag(const Arg *arg)
 		if (selmon->sel->switchtag)
 			selmon->sel->switchtag = 0;
 		setclienttagprop(c);
-		focus(NULL);
 		arrange(selmon);
+		focus(NULL);
 	}
 }
 
@@ -2597,8 +2610,8 @@ toggletag(const Arg *arg)
 	newtags = selmon->sel->tags ^ (arg->ui & TAGMASK);
 	if (newtags) {
 		selmon->sel->tags = newtags;
-		focus(NULL);
 		arrange(selmon);
+		focus(NULL);
 	}
 }
 
@@ -2629,8 +2642,8 @@ toggleview(const Arg *arg)
 		selmon->lt[selmon->sellt^1] = selmon->pertag->ltidxs[selmon->pertag->curtag][selmon->sellt^1];
 		if (selmon->showbar != selmon->pertag->showbars[selmon->pertag->curtag])
 			togglebar(NULL);
-		focus(NULL);
 		arrange(selmon);
+		focus(NULL);
 	}
 }
 
@@ -2677,9 +2690,9 @@ unmanage(Client *c, int destroyed)
 		XUngrabServer(dpy);
 	}
 	free(c);
-	focus(NULL);
 	updateclientlist();
 	arrange(m);
+	focus(NULL);
 	if (switchtag)
 		view(&((Arg) { .ui = switchtag }));
 }
@@ -2988,8 +3001,8 @@ view(const Arg *arg)
 	selmon->lt[selmon->sellt^1] = selmon->pertag->ltidxs[selmon->pertag->curtag][selmon->sellt^1];
 	if (selmon->showbar != selmon->pertag->showbars[selmon->pertag->curtag])
 		togglebar(NULL);
-	focus(NULL);
 	arrange(selmon);
+	focus(NULL);
 }
 
 pid_t

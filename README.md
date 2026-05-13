@@ -13,6 +13,7 @@ patches applied (don't know if i've missed any):\
 [cfacts-dragfact](https://github.com/bakkeby/patches/blob/master/dwm/dwm-cfacts-dragfact-6.6.diff)\
 [cfacts-vanitygaps](https://github.com/bakkeby/patches/blob/master/dwm/dwm-cfacts-vanitygaps-6.6.diff)\
 [cyclelayouts](https://github.com/bakkeby/patches/blob/master/dwm/dwm-cyclelayouts-6.3.diff)\
+[focusfollowmouse](https://github.com/bakkeby/patches/blob/master/dwm/dwm-focusfollowmouse-6.6.diff)\
 [focusonnetactive](https://github.com/bakkeby/patches/blob/master/dwm/dwm-focusonnetactive-6.3.diff)\
 [hide vacant tags](https://dwm.suckless.org/patches/hide_vacant_tags/dwm-hide_vacant_tags-6.4.diff)\
 [Keychord](https://dwm.suckless.org/patches/keychord/dwm-keychord-20211210-a786211.diff)\
